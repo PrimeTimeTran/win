@@ -1,0 +1,42 @@
+<h1>Incoming Messages</h1>
+<p>You have <%= @messages.size %> messages.</p>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Read At</th>
+      <th>Body</th>
+      <th>View</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+    <% @messages.each do |message| %>
+      <td><%= message.sender %></td>
+      <td><%= message.recipient %></td>
+
+    <% if message.read_at != nil then %>
+      <td><%= time_ago_in_words(message.read_at) %> ago.</td>
+    <% else %>
+      <td><b style="color:red">Unread!</b></td>
+    <% end %>
+
+      <td><%= message.body %></td>
+    <% if message.read? %>
+      <td><b>Message has been read!</b></td>
+    <% else %>
+      <td><%= link_to "View", message, class: "btn btn-primary" %></td>
+    <% end %>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to "New Message", new_message_path, class: "btn btn-success" %>
+<%= link_to 'Profile', user_path(current_user), class: "nav-item btn btn-info" %>
+<%= link_to "Add Friends", users_path, class: "btn btn-danger" %>
+<%= link_to "Sent Messages", sent_messages_path, class: "btn btn-primary" %>

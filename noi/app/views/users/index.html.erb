@@ -1,0 +1,16 @@
+<h1>Users</h1>
+<%= link_to "Friends", users_path %>
+
+  <table class="table">
+    <thead>
+        <th>Email</th>
+        <th>Add</th>
+    </thead>
+      <% User.all.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: "btn btn-primary" %></td>
+    </tr>
+
+    <% end %>
+  </table>

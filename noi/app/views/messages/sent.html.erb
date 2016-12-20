@@ -1,0 +1,28 @@
+<h1>Messages sent</h1>
+<p>You have sent <%= @messages.size %> messages.</p>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Read At</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+    <% @messages.each do |message| %>
+      <td><%= message.sender %></td>
+      <td><%= message.recipient %></td>
+      <td><%= message.read_at %></td>
+      <td><%= message.body %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to "New Message", new_message_path, class: "btn btn-primary" %>
+<%= link_to 'Profile', user_path(current_user), class: "nav-item btn btn-primary" %>
+<%= link_to "Add Friends", users_path, class: "btn btn-primary" %>
