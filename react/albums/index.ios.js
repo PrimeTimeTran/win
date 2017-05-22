@@ -1,23 +1,17 @@
-// Index.ios.js - iOS development file
-
-// Imports libraries to help us create component
+// Index.ios.js - Place Code in Here for iOS!
+// Import a library to help create a Component
 import React from 'react';
 import { AppRegistry, View } from 'react-native';
-
-// Imports custom components that we've written
-import Header from './src/components/Header';
+import Header from './src/components/header';
 import AlbumList from './src/components/AlbumList';
 
-// Creates a Component
+// Create a Component
 const App = () => (
   <View>
-    {/* Calls Header component and passes property of headerText to the child component */}
     <Header headerText={'Albums'} />
     <AlbumList />
   </View>
-);
+  );
 
-// Renders it to the device. Tells React native to take this component and render it on the device
-// Only the 'root' component uses 'AppRegistry'
-// Only used in this file. It decides what to show the user
+// Render it to the device
 AppRegistry.registerComponent('albums', () => App);

@@ -1,14 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 
-
-// Is going to be used to wrap another component
-const Card = (props) => (
-  <View style={styles.containerStyle} >
-    {/* Was handed the text from AlbumDetail because 'Card' had children */}
-    {props.children}
-  </View>
-);
+const Card = (props) => {
+  return (
+    <View style={styles.containerStyle}>
+      {props.children}
+    </View>
+  );
+};
 
 const styles = {
   containerStyle: {

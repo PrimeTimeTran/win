@@ -1,37 +1,36 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-// Creates Database
 import firebase from 'firebase';
-import { Header, Button, CardSection, Spinner } from './components/common';
-import LoginForm from './components/LoginForm';
+import { Header, Button, CardSection, Spinner } from './components/common'; // Looks at the index.js file inside of the common directory
+import LoginForm from './components/LoginForm'
 
 class App extends Component {
+  // User logged in State
   state = { loggedIn: null };
 
-  // Initialize Firebase DB for use as the backend
   componentWillMount() {
-    
-    // Connect to a specific project we created
+    // Firebase connection for our Database bucket
     firebase.initializeApp({
-    apiKey: 'AIzaSyCYtj_TxdWyVhwr42TT-Q9pvniNZpFRN9c',
-    authDomain: 'authentication-888a9.firebaseapp.com',
-    databaseURL: 'https://authentication-888a9.firebaseio.com',
-    storageBucket: 'authentication-888a9.appspot.com',
-    messagingSenderId: '682620572715'
+      apiKey: "AIzaSyCYtj_TxdWyVhwr42TT-Q9pvniNZpFRN9c",
+      authDomain: "authentication-888a9.firebaseapp.com",
+      databaseURL: "https://authentication-888a9.firebaseio.com",
+      projectId: "authentication-888a9",
+      storageBucket: "authentication-888a9.appspot.com",
+      messagingSenderId: "682620572715"
     });
 
-    // Watching the state of the user and deciding what to render
+  // Method for the firebase.auth object for handling login
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
       } else {
-        this.setState({ loggedIn: false });
+        this.setState({ loggedIn: false});
       }
     });
   }
 
-  // Callback to render depending on the state
-  renderContent () {
+  // Determines whether or not to show LoginForm//LogOut//Spinner
+  renderContent() {
     switch (this.state.loggedIn) {
       case true:
         return (
@@ -44,15 +43,14 @@ class App extends Component {
       case false:
         return <LoginForm />;
       default:
-        return <View><Spinner size="large" /></View>;
+        return <Spinner size="large" />;
+        }
       }
-    }
 
-  // Rendering the HomePage
   render() {
     return (
       <View>
-        <Header headerText="Authentication"/>
+        <Header headerText="Authentication" />
         {this.renderContent()}
       </View>
     );

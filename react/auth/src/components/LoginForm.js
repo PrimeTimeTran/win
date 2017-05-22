@@ -1,74 +1,72 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner } from './common';
+import firebase from 'firebase';
 
 class LoginForm extends Component {
-  state = { email: '', password: '', error: '', loading: false };
+  state = { email: '', password: '', error: '', loading: false }; // Initialize the initial state of the email property as an empty string
 
   onButtonPress() {
+    // Sets email and password property from value of inputs
     const { email, password } = this.state;
 
-    // Login Logic
+    // Clears Error Message from previous attempt & manages loading state
     this.setState({ error: '', loading: true });
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    // Logic that handles the Login
+    firebase.auth().signInWithEmailAndPassword(email, password) // Attempts to SignIn
       .then(this.onLoginSuccess.bind(this))
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch(() => { // Catches if SignIn Fails
+        firebase.auth().createUserWithEmailAndPassword(email, password) // Attemps to create an account
           .then(this.onLoginSuccess.bind(this))
           .catch(this.onLoginFail.bind(this));
       });
   }
-  onLoginFail() {
-    this.setState({
-      error: 'Authentication Failed',
-      loading: false
-    });
-  }
 
-// A lot of good Feedback to let them know what they're doing
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      loading: false,
-      error: ''
-    });
-  }
-
-  renderButton() {
-    if (this.state.loading) {
-      return <Spinner size="small"/>;
+    onLoginFail() {
+      this.setState({ error: 'Authentication Failed', loading: false });  // Flashes error message
     }
 
+    onLoginSuccess() {
+      this.setState({
+        email: '',
+        password: '',
+        loading: false,
+        error: ''
+      });
+    }
+
+  // Logic to determine whether or not to display the spinner or the button
+  renderButton() {
+    if (this.state.loading) {
+      return <Spinner size="small" />;
+    }
     return (
       <Button onPress={this.onButtonPress.bind(this)}>
         Log In
       </Button>
     );
   }
-// Controlled Components
+
   render() {
     return (
       <Card>
         <CardSection>
           <Input
-            placeholder="User@gmail.com"
-            label="Email:"
-            value={this.state.email}
-            onChangeText={email => this.setState({ email })}
+            placeholder="user@gmail.com"
+            label="Email"
+            value={this.state.email} // Sets the state as the text
+            onChangeText={email => this.setState({ email })} // Calls function that changes the state onChangeText
           />
         </CardSection>
 
         <CardSection>
           <Input
-            placeholder="Password"
-            label="Password:"
+            secureTextEntry
+            placeholder="password"
+            label="Password"
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
-            style={{ height: 20, width: 100}}
-            secureTextEntry
           />
         </CardSection>
 
@@ -76,9 +74,8 @@ class LoginForm extends Component {
           {this.state.error}
         </Text>
 
-        {/* Controlled Components */}
-
         <CardSection>
+          {/* Calls renderButton helper method */}
           {this.renderButton()}
         </CardSection>
       </Card>
@@ -90,7 +87,8 @@ const styles = {
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red',
+    color: 'red'
   }
-};
+}
+
 export default LoginForm;

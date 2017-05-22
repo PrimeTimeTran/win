@@ -1,40 +1,33 @@
-// Import libraries for making a Component
+// Import a library to help create a Component
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
-// Make a component
-const Header = (props) => (
-    <View style={styles.header}>
-      {/* Parent must provide a property for this */}
-      <Text style={styles.headerText}>
-        {props.headerText}
-      </Text>
+// Create a Component
+const Header = (props) => {
+  const { textStyle, viewStyle } = styles;
+
+  return (
+    <View style={viewStyle}>
+      <Text style={textStyle}>{props.headerText}</Text>
     </View>
-);
-
-const styles = StyleSheet.create({
-  header: {
-    justifyContent: 'center', // Aligns vertically
-                              // 'flex-end', 'center', 'flex-start'
-    alignItems: 'center',     // Aligns horizontally
-                              // 'flex-end', 'center', 'flex-start'
-    backgroundColor: '#F8F8F8',
-    paddingTop: 15,
+  );
+};
+const styles = {
+  viewStyle: {
+    backgroundColor: '#f8f8f8',
+    justifyContent: 'center', // Vertical spacing
+    alignItems: 'center', // Horizontal spacing
     height: 60,
-
-    // Makes the shadow beneath the header
-    shadowColor: 'black',
-    shadowOffset: { with: 0, height: 2 },
-    shadowOpacity: 0.2,
-    elevation: 2,
-    position: 'relative'
+    paddingTop: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2
   },
-  // Header Text
-  headerText: {
-    fontSize: 20,
-    fontFamily: 'Arial',
+  textStyle: {
+    fontSize: 20
   }
-});
+};
 
-// Make the component available to other parts of the app
+// Make the component available to other parts of the App
+// Must export statements to make it available
 export default Header;
