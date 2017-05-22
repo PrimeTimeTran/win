@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # Define the path for menu is the home controller menu action
+  get 'menu' => 'home#menu'
+  get 'contact_us' => 'home#contact_us'
+  root 'home#index'
 end
