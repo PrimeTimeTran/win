@@ -9,7 +9,6 @@ require 'rspec/rails'
 # require database cleaner at the top level
 require 'database_cleaner'
 
-
 # Include everything in support
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -25,13 +24,14 @@ end
 
 RSpec.configure do |config|
   # Type of Helper
-  config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper
+  config.include ControllerSpecHelper
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # add `FactoryGirl` methods
   config.include FactoryGirl::Syntax::Methods
-  
+
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
