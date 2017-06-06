@@ -6,17 +6,17 @@
 # Difficulty: easy.
 
 def reverse(string)
+  new_string = ''
+  string.split('').each do |letter|
+    new_string = letter + new_string
+  end
+  new_string
 end
 
 # These are tests to check that your code is working. After writing
 # your solution, they should all print true.
 
-puts(
-  'reverse("abc") == "cba": ' + (reverse("abc") == "cba").to_s
-)
-puts(
-  'reverse("a") == "a": ' + (reverse("a") == "a").to_s
-)
-puts(
-  'reverse("") == "": ' + (reverse("") == "").to_s
-)
+puts('reverse("abc") == "cba": ' + (reverse("abc") == "cba").to_s)
+puts('reverse("a") == "a": ' + (reverse("a") == "a").to_s)
+puts('reverse("") == "": ' + (reverse("") == "").to_s)
+puts('reverse("alternative") == "evitanretla": ' + (reverse("alternative") == "evitanretla").to_s)

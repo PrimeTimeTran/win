@@ -4,6 +4,13 @@
 # Difficulty: easy.
 
 def sum_nums(num)
+  idx = 1
+  total = 0
+  until idx == num + 1
+    total = total + idx
+    idx += 1
+  end
+  total
 end
 
 # These are tests to check that your code is working. After writing
