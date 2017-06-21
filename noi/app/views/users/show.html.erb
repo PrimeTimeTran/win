@@ -1,7 +1,0 @@
-<h1> Profile:</h1>
-<% current_user.email %>
-
-<% for friendship in current_user.friendships %>
-<%= friendship.friend.email %>
-
-<% end %>
