@@ -23,7 +23,7 @@ class Item
   end
 
   def line
-    done? ? @line.colorize(:light_cyan) : @line.colorize(:light_yellow)
+    done? ? @line.colorize(:cyan) : @line.colorize(:light_yellow)
   end
 
   def status

@@ -1,5 +1,5 @@
-# My TODO app
-## Large Heading
-### Smaller Heading
+# A Command Line Todo App
 
-Regular text and other stuff.
+Loi's Todo app =).
+### Gif walkthrough:
+[Gif walkthrough:](./todo-app.gif)

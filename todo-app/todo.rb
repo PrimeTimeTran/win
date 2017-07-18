@@ -7,7 +7,7 @@ class Todo
   def initialize(file_name = "todo.data")
     puts ("-" * 75).colorize(:green)
     puts "Welcome to the Ruby Todo List App!".colorize(:green)
-    puts "If you'd like to see a list of available comments, type in " + "-h".colorize(:light_red) +  " or " + "help".colorize(:light_red) +  " to view the help menu.\n\n".colorize(:green)
+    puts "If you'd like to see a list of available comments, type in \n" + "-h".colorize(:light_red) +  " or " + "help".colorize(:light_red) +  " to " + "view the help menu.\n\n".colorize(:light_red)
     file = File.open(file_name)
     data = file.read
     items = []
@@ -30,7 +30,7 @@ class Todo
 
   def prompt
     puts ("-" * 75).colorize(:green)
-    print "What would you like to do? ".colorize(:green)
+    print "Please enter an option: ".colorize(:green)
   end
 
   def input(input)
@@ -39,7 +39,6 @@ class Todo
     when "display", "-d"
       display
     when "help", "-h"
-      seperate("Available commands:")
       help
     when "add", "-a"
       @list.add
@@ -52,18 +51,18 @@ class Todo
     when "colors"
       show_colors      
     else
-      seperate("Sorry!")
-      puts "I don't understand that command. Please try again or enter -h for more help"
+      puts "Sorry!".colorize(:light_red) +" I don't understand that command."
+      puts "Please try again or enter" + " -h".colorize(:light_red) + " or" + " help".colorize(:light_red) + " for more help"
     end
   end
 
   def help 
-    puts "-h ".colorize(:light_cyan) + "or" + " help:".colorize(:light_cyan) + " Displays a list of all commands available."
-    puts "-d ".colorize(:light_cyan) + "or" + " display:".colorize(:light_cyan) +" Displays your todo list with all items."
-    puts "-a ".colorize(:light_cyan) + "or" + " add:".colorize(:light_cyan) + " Allows you to add new items to your todo list."
-    puts "-r ".colorize(:light_cyan) + "or" + " remove:".colorize(:light_cyan) + " Allows you to remove items from your todo list."
-    puts "-m ".colorize(:light_cyan) + "or" + " mark:".colorize(:light_cyan) + " Allows you to check items on the list as complete."
-    puts "-um ".colorize(:light_cyan) + "or" + " unmark:".colorize(:light_cyan) + " Allows you to uncheck items as complete on your todo list."
+    puts "-h ".colorize(:light_red) + "or" + " help:".colorize(:light_red) + " Displays a list of all commands available."
+    puts "-d ".colorize(:light_red) + "or" + " display:".colorize(:light_red) +" Displays your todo list with all items."
+    puts "-a ".colorize(:light_red) + "or" + " add:".colorize(:light_red) + " Allows you to add new items to your todo list."
+    puts "-r ".colorize(:light_red) + "or" + " remove:".colorize(:light_red) + " Allows you to remove items from your todo list."
+    puts "-m ".colorize(:light_red) + "or" + " mark:".colorize(:light_red) + " Allows you to check items on the list as complete."
+    puts "-um ".colorize(:light_red) + "or" + " unmark:".colorize(:light_red) + " Allows you to uncheck items as complete on your todo list."
   end
 
   def show_colors
@@ -108,10 +107,10 @@ end
 @todo.list.all
 loop do
   @todo.prompt
-  input = STDIN.gets.chomp
+  input = gets.chomp
   @todo.save
   if input == "exit" || input == "-e"  
-    puts "\nOk, exiting... See you next time!".colorize(:light_red)
+    puts "Ok, exiting... See you next time & " + "<3".colorize(:red) + " from " + "CoderSchool\n".colorize(:red)
     break
   end
   @todo.input(input)
