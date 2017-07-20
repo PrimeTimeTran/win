@@ -104,17 +104,17 @@ class Todo
 end
 
 @todo = Todo.new("todo.data")
-@todo.list.all
-loop do
-  @todo.prompt
-  input = gets.chomp
-  @todo.save
-  if input == "exit" || input == "-e"  
-    puts "Ok, exiting... See you next time & " + "<3".colorize(:red) + " from " + "CoderSchool\n".colorize(:red)
-    break
-  end
-  @todo.input(input)
-end  
+# @todo.list.all
+# loop do
+#   @todo.prompt
+#   input = gets.chomp
+#   @todo.save
+#   if input == "exit" || input == "-e"  
+#     puts "Ok, exiting... See you next time & " + "<3".colorize(:red) + " from " + "CoderSchool\n".colorize(:red)
+#     break
+#   end
+#   @todo.input(input)
+# end  
 
 # if ARGV[0] == "done"
 #   puts "Nice!"
