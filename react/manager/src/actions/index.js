@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-// Curly braces because there are many things in the types.js file. We specifically want EMAIL_CHANGED
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -23,9 +22,9 @@ export const passwordChanged = (text) => {
 };
 
 export const loginUser = ({ email, password }) => {
-  return (dispatch) => {  
+  return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-    
+
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .catch(() => {
@@ -37,7 +36,7 @@ export const loginUser = ({ email, password }) => {
 };
 
 const loginUserFail = (dispatch) => {
-  dispatch({ type: LOGIN_USER_FAIL});
+  dispatch({ type: LOGIN_USER_FAIL });
 }
 
 const loginUserSuccess = (dispatch, user) => {
